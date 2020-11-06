@@ -50,6 +50,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 0,
     'jsx-a11y/label-has-for': 0,
     'jsx-a11y/no-static-element-interactions': 0,
+    'linebreak-style': 0,
     'no-confusing-arrow': 0,
     'no-nested-ternary': 0,
     'no-plusplus': 0,

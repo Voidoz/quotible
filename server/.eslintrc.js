@@ -36,6 +36,7 @@ module.exports = {
     'consistent-return': 0,
     'func-names': 0,
     'implicit-arrow-linebreak': 0,
+    'linebreak-style': 0,
     'no-confusing-arrow': 0,
     'no-console': 0,
     'no-nested-ternary': 0,
