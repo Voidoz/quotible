@@ -16,34 +16,18 @@ router.get('/', requireAuth, (req, res) => {
   });
 });
 
-router.post('/', requireAuth, (req, res) => {
-  req.body.user = req.user.id;
+router.post('/add', requireAuth, (req, res) => {
+  if (!req || !req.body || !req.body.quote || !req.body.character) {
+    res.status(400).send({ message: 'Quote and Character required' });
+  }
 
   const newQuote = Quote(req.body);
 
   newQuote.save((err, savedQuote) => {
-    if (err) {
+    if (err || !savedQuote) {
       res.status(400).send({ message: 'Create quote failed', err });
     } else {
       res.send({ message: 'Quote created successfully', quote: savedQuote.hide() });
-    }
-  });
-});
-
-router.put('/', requireAuth, (req, res) => {
-  Quote.findById(req.body.id, { __v: 0, user: 0 }, (err, quote) => {
-    if (err) {
-      res.status(400).send({ message: 'Update quote failed', err });
-    } else {
-      quote.text = req.body.text;
-      quote.updated_at = Date.now();
-      quote.save((err, savedQuote) => {
-        if (err) {
-          res.status(400).send({ message: 'Update quote failed', err });
-        } else {
-          res.send({ message: 'Updated quote successfully', quote: savedQuote.hide() });
-        }
-      });
     }
   });
 });

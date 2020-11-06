@@ -1,3 +1,4 @@
+const R = require('ramda');
 const mongoose = require('mongoose');
 const { MongooseAutoIncrementID } = require('mongoose-auto-increment-reworked');
 
@@ -24,6 +25,10 @@ quoteSchema.plugin(MongooseAutoIncrementID.plugin, {
   nextCount: false,
   resetCount: false,
 });
+
+quoteSchema.methods.hide = function() {
+  return R.omit(['__v', '_id'], this.toObject());
+};
 
 // We define the data model here
 const Quote = mongoose.model('Quote', quoteSchema);
