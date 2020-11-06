@@ -22,7 +22,7 @@ export default function WelcomePage() {
       <Section>
         <Container>
           <Title size="1">
-            Welcome Page!
+            Quotible!
           </Title>
         </Container>
       </Section>

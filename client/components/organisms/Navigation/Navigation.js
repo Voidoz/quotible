@@ -39,6 +39,10 @@ export default function Navigation({ pathname }) {
     ? pathname === '/settings'
     : R.slice(0, 10, pathname) === '/settings/';
 
+  const isNewQuote = (pathname.length === 9)
+    ? pathname === '/newQuote'
+    : R.slice(0, 10, pathname) === '/newQuote/';
+
   return (
     <Navbar fixed="top" shadow>
       <Container>
@@ -49,7 +53,7 @@ export default function Navigation({ pathname }) {
             link
           >
             <Title className="logo" size="3">
-              MERN Boilerplate
+              Quotible
             </Title>
           </Navbar.Item>
           <div className="navbar-brand-right">
@@ -125,6 +129,17 @@ export default function Navigation({ pathname }) {
               >
                 <Title size="6">
                   Settings
+                </Title>
+              </Navbar.Item>
+              <Navbar.Item
+                className="is-hidden-mobile"
+                onClick={() => dispatch(push('/newQuote'))}
+                active={isNewQuote}
+                tab
+                link
+              >
+                <Title size="6">
+                  New Quote
                 </Title>
               </Navbar.Item>
             </Navbar.Start>
