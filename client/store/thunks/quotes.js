@@ -1,52 +1,36 @@
 import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from 'ramda';
 
-import { getTodos, postTodo, putToggleCompleteTodo, putTodo, deleteTodo } from '_api/todos';
-import { setTodos, addTodo, toggleCompleteTodo, updateTodo, removeTodo } from '_actions/todos';
+import { getQuotes, postQuote, deleteQuote } from '_api/quotes';
+import { setQuotes, addQuote, removeQuote } from '_actions/quotes';
 
 import { dispatchError } from '_utils/api';
 
-export const attemptGetTodos = () => dispatch =>
-  getTodos()
+export const attemptGetQuotes = () => dispatch =>
+  getQuotes()
     .then(data => {
-      const todos = R.map(todo =>
-        R.omit(['Id'], R.assoc('id', todo._id, snakeToCamelCase(todo))), data.todos);
+      const quotes = R.map(quote =>
+        R.omit(['Id'], R.assoc('id', quote._id, snakeToCamelCase(quote))), data.quotes);
 
-      dispatch(setTodos(todos));
-      return data.todos;
+      dispatch(setQuotes(quotes));
+      return data.quotes;
     })
     .catch(dispatchError(dispatch));
 
-export const attemptAddTodo = text => dispatch =>
-  postTodo({ text })
+export const attemptAddQuote = text => dispatch =>
+  postQuote({ text })
     .then(data => {
-      const todo = R.omit(['Id'], R.assoc('id', data.todo._id, snakeToCamelCase(data.todo)));
+      const quote = R.omit(['Id'], R.assoc('id', data.quote._id, snakeToCamelCase(data.quote)));
 
-      dispatch(addTodo(todo));
+      dispatch(addQuote(quote));
       return data.user;
     })
     .catch(dispatchError(dispatch));
 
-export const attemptToggleCompleteTodo = id => dispatch =>
-  putToggleCompleteTodo({ id })
+export const attemptDeleteQuote = id => dispatch =>
+  deleteQuote({ id })
     .then(data => {
-      dispatch(toggleCompleteTodo(id));
-      return data;
-    })
-    .catch(dispatchError(dispatch));
-
-export const attemptUpdateTodo = (id, text) => dispatch =>
-  putTodo({ id, text })
-    .then(data => {
-      dispatch(updateTodo({ id, text, updatedAt: data.todo.updated_at }));
-      return data;
-    })
-    .catch(dispatchError(dispatch));
-
-export const attemptDeleteTodo = id => dispatch =>
-  deleteTodo({ id })
-    .then(data => {
-      dispatch(removeTodo(id));
+      dispatch(removeQuote(id));
       return data;
     })
     .catch(dispatchError(dispatch));

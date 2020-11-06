@@ -1,31 +1,19 @@
 import request from 'superagent';
 import { handleSuccess, handleError } from '_utils/api';
 
-export const postTodo = info =>
-  request.post('/api/todos')
+export const postQuote = info =>
+  request.post('/api/quotes')
     .send(info)
     .then(handleSuccess)
     .catch(handleError);
 
-export const getTodos = () =>
-  request.get('/api/todos')
+export const getQuotes = () =>
+  request.get('/api/quotes')
     .then(handleSuccess)
     .catch(handleError);
 
-export const putToggleCompleteTodo = info =>
-  request.put('/api/todos/complete')
-    .send(info)
-    .then(handleSuccess)
-    .catch(handleError);
-
-export const putTodo = info =>
-  request.put('/api/todos')
-    .send(info)
-    .then(handleSuccess)
-    .catch(handleError);
-
-export const deleteTodo = info =>
-  request.delete('/api/todos')
+export const deleteQuote = info =>
+  request.delete('/api/quotes')
     .send(info)
     .then(handleSuccess)
     .catch(handleError);
