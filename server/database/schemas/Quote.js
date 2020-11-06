@@ -7,9 +7,9 @@ const { Schema } = mongoose;
 
 // Here is our data model
 const quoteSchema = new Schema({
-  franchise: { type: String, required: true },
+  franchise: { type: String },
   installment: { type: String },
-  charachter: { type: String },
+  charachter: { type: String, required: true },
   quote: { type: String, required: true },
 });
 
