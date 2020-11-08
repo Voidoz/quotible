@@ -9,7 +9,7 @@ const { Schema } = mongoose;
 const quoteSchema = new Schema({
   franchise: { type: String },
   installment: { type: String },
-  charachter: { type: String, required: true },
+  character: { type: String, required: true },
   quote: { type: String, required: true },
 });
 
