@@ -16,7 +16,7 @@ router.get('/', requireAuth, (req, res) => {
   });
 });
 
-router.post('/add', requireAuth, (req, res) => {
+router.post('/', requireAuth, (req, res) => {
   if (!req || !req.body || !req.body.quote || !req.body.character) {
     res.status(400).send({ message: 'Quote and Character required' });
   }
@@ -24,7 +24,8 @@ router.post('/add', requireAuth, (req, res) => {
   const newQuote = Quote(req.body);
 
   newQuote.save((err, savedQuote) => {
-    if (err || !savedQuote) {
+    if (err) {
+      console.log('1');
       res.status(400).send({ message: 'Create quote failed', err });
     } else {
       res.send({ message: 'Quote created successfully', quote: savedQuote.hide() });

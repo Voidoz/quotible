@@ -1,4 +1,4 @@
-import { push } from 'connected-react-router';
+// import { push } from 'connected-react-router';
 import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from 'ramda';
 
@@ -19,14 +19,14 @@ export const attemptGetQuotes = () => dispatch =>
     .catch(dispatchError(dispatch));
 
 export const attemptAddQuote = newQuote => dispatch =>
-  postQuote(newQuote)
+  postQuote({ newQuote })
     .then(data => {
       const quote = R.omit(['Id'], R.assoc('id', data.quote._id, snakeToCamelCase(data.quote)));
 
       dispatch(addQuote(quote));
-      return data.user;
+      return data.quote;
     })
-    .then(() => dispatch(push('/home')))
+    // .then(() => dispatch(push('/home')))
     .catch(dispatchError(dispatch));
 
 export const attemptDeleteQuote = id => dispatch =>

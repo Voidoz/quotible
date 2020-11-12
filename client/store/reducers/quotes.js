@@ -13,9 +13,10 @@ export function quote(state = {
   switch (action.type) {
     case ADD_QUOTE:
       return update(state, {
-        id: { $set: action.id },
-        text: { $set: action.text },
-        createdAt: { $set: action.createdAt },
+        franchise: { $set: action.franchise },
+        installment: { $set: action.installment },
+        character: { $set: action.character },
+        quote: { $set: action.quote },
       });
     case TOGGLE_COMPLETE_QUOTE:
       return update(state, {

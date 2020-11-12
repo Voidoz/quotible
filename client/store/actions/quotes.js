@@ -10,11 +10,12 @@ export const setQuotes = quotes => ({
   quotes,
 });
 
-export const addQuote = ({ id, text, createdAt }) => ({
+export const addQuote = ({ franchise, installment, character, quote }) => ({
   type: ADD_QUOTE,
-  createdAt,
-  id,
-  text,
+  franchise,
+  installment,
+  character,
+  quote,
 });
 
 export const toggleCompleteQuote = id => ({

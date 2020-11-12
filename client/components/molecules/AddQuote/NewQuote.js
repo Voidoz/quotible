@@ -66,6 +66,7 @@ export default function NewQuote() {
           <Input
             id="franchise"
             placeholder="Franchise"
+            type="text"
             value={franchise}
             onChange={handleFranchiseChange}
           />
@@ -85,7 +86,7 @@ export default function NewQuote() {
           <Input
             id="installment"
             placeholder="Installment"
-            type="installment"
+            type="text"
             value={installment}
             onChange={handleInstallmentChange}
           />
@@ -105,7 +106,7 @@ export default function NewQuote() {
           <Input
             id="character"
             placeholder="Character"
-            type="character"
+            type="text"
             value={character}
             onChange={handleCharacterChange}
           />
@@ -125,7 +126,7 @@ export default function NewQuote() {
           <Input
             id="quote"
             placeholder="Quote"
-            type="quote"
+            type="text"
             value={quote}
             onChange={handleQuoteChange}
           />

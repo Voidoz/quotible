@@ -1,6 +1,5 @@
 const R = require('ramda');
 const mongoose = require('mongoose');
-const { MongooseAutoIncrementID } = require('mongoose-auto-increment-reworked');
 
 // We make the Schema here
 const { Schema } = mongoose;
@@ -11,19 +10,6 @@ const quoteSchema = new Schema({
   installment: { type: String },
   character: { type: String, required: true },
   quote: { type: String, required: true },
-});
-
-// Here we tell Mongoose how we want to treat the schema
-MongooseAutoIncrementID.initialise('counters');
-
-quoteSchema.plugin(MongooseAutoIncrementID.plugin, {
-  modelName: 'Quote',
-  field: 'quote',
-  incrementBy: 1,
-  startAt: 1,
-  unique: true,
-  nextCount: false,
-  resetCount: false,
 });
 
 quoteSchema.methods.hide = function() {
